@@ -383,7 +383,7 @@ export default class Dropdown extends PureComponent {
     } = this.props;
 
     if (customRenderItem) {
-      return customRenderItem({ item, index });
+      return customRenderItem({ item, index }, this.onSelect);
     }
 
     const props = !propsExtractor(item, index) && {

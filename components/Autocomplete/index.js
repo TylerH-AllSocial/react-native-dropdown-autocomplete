@@ -13,7 +13,6 @@ class Autocomplete extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: props.initialValue || "",
       loading: false,
       filteredItems: [],
     };
@@ -35,7 +34,6 @@ class Autocomplete extends Component {
       onChangeText(text);
     }
     clearTimeout(this.timer);
-    this.setState({inputValue: text});
     if (text.length > minimumCharactersCount) {
       this.setState(
         {
@@ -60,8 +58,16 @@ class Autocomplete extends Component {
   }
 
   async triggerChange() {
-    const {inputValue, items} = this.state;
-    const {fetchData, fetchDataUrl, valueExtractor} = this.props;
+    const {items} = this.state;
+    const { inputValue, fetchData, fetchDataUrl, valueExtractor, customInputParser } = this.props;
+
+    if (typeof customInputParser === 'function') {
+        inputValue = customInputParser(inputValue)
+        if (!inputValue) {
+          return;
+        }
+    }
+
     if (fetchData) {
       try {
         const response = await fetchData(inputValue);
@@ -120,17 +126,12 @@ class Autocomplete extends Component {
   setItem(value) {
     const {index, handleSelectItem, valueExtractor, resetOnSelect} = this.props;
     handleSelectItem(value, index);
-
-    if (resetOnSelect) {
-      this.setState({inputValue: ""});
-    } else {
-      const capitalizedValue = capitalizeFirstLetter(valueExtractor(value));
-      this.setState({inputValue: capitalizedValue});
-    }
   }
 
   clearInput() {
-    this.setState({inputValue: ""});
+    if (this.props.onChangeText){
+      this.props.onChangeText('');
+    }
   }
 
   componentDidMount() {
@@ -155,9 +156,10 @@ class Autocomplete extends Component {
   }
 
   render() {
-    const {inputValue, items, loading, filteredItems} = this.state;
+    const { items, loading, filteredItems} = this.state;
     const {
       placeholder,
+      inputValue,
       scrollToInput,
       renderIcon,
       inputContainerStyle,
