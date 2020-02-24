@@ -170,8 +170,7 @@ class Autocomplete extends Component {
       spinnerColor,
       placeholderColor,
       data,
-      mutliline,
-      scrollEnabled,
+      textInputProps,
       disableFullscreenUI,
       ...dropdownProps
     } = this.props;
@@ -184,8 +183,7 @@ class Autocomplete extends Component {
             ref={ref => {
               this.container = ref;
             }}
-            mutliline={mutliline}
-            scrollEnabled={scrollEnabled}
+            {...textInputProps}
             onBlur={event => this.handleBlur(event)}
             style={[styles.input, inputStyle]}
             placeholder={placeholder}
