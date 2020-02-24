@@ -379,7 +379,12 @@ export default class Dropdown extends PureComponent {
       listItemTextStyle,
       rightContentStyle,
       rightContentItemStyle,
+      customRenderItem,
     } = this.props;
+
+    if (customRenderItem) {
+      return customRenderItem({ item, index });
+    }
 
     const props = !propsExtractor(item, index) && {
       rippleDuration,
