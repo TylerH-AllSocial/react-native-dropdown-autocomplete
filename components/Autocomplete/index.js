@@ -59,7 +59,8 @@ class Autocomplete extends Component {
 
   async triggerChange() {
     const {items} = this.state;
-    const { inputValue, fetchData, fetchDataUrl, valueExtractor, customInputParser } = this.props;
+    let { inputValue } = this.props;
+    const { fetchData, fetchDataUrl, valueExtractor, customInputParser } = this.props;
 
     if (typeof customInputParser === 'function') {
         inputValue = customInputParser(inputValue)
