@@ -65,7 +65,7 @@ class Autocomplete extends Component {
     if (typeof customInputParser === 'function') {
         inputValue = customInputParser(inputValue)
         if (!inputValue) {
-          this.dropdown.close();
+          this.dropdown.current.close();
           return;
         }
     }
