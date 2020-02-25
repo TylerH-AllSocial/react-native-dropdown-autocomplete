@@ -174,6 +174,7 @@ class Autocomplete extends Component {
       data,
       textInputProps,
       disableFullscreenUI,
+      hideSpinner,
       ...dropdownProps
     } = this.props;
 
@@ -201,7 +202,7 @@ class Autocomplete extends Component {
               }
             }}
           />
-          {loading && (
+          {loading && !hideSpinner &&  (
             <ActivityIndicator
               style={[styles.spinner, spinnerStyle]}
               size={spinnerSize}
