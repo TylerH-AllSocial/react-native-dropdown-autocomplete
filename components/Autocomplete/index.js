@@ -68,6 +68,10 @@ class Autocomplete extends Component {
           this.dropdown.current.close();
           return;
         }
+        if (inputValue.length === 1 && inputValue.includes('@')) {
+          this.dropdown.current.close();
+          return;
+        }
     }
 
     if (fetchData) {
