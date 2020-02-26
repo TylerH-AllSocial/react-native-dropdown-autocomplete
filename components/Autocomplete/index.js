@@ -131,7 +131,9 @@ class Autocomplete extends Component {
 
   setItem(value) {
     const {index, handleSelectItem, valueExtractor, resetOnSelect} = this.props;
-    handleSelectItem(value, index);
+    if (handleSelectItem) {
+      handleSelectItem(value, index);
+    }
   }
 
   clearInput() {
@@ -260,7 +262,7 @@ Autocomplete.propTypes = {
   valueExtractor: func,
   renderIcon: func,
   scrollToInput: func,
-  handleSelectItem: func.isRequired,
+  handleSelectItem: func,
   onDropdownClose: func,
   onDropdownShow: func,
   rightTextExtractor: func,
