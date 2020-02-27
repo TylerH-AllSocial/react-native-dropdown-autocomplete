@@ -243,6 +243,7 @@ Autocomplete.defaultProps = {
   highlightText: true,
   waitInterval: WAIT_INTERVAL,
   resetOnSelect: false,
+  handleSelectItem: () => {}
 };
 
 Autocomplete.propTypes = {
