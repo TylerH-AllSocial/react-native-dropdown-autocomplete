@@ -131,7 +131,7 @@ class Autocomplete extends Component {
 
   setItem(value) {
     const {index, handleSelectItem, valueExtractor, resetOnSelect} = this.props;
-    if (handleSelectItem) {
+    if (handleSelectItem !== undefined || handleSelectItem !== null) {
       handleSelectItem(value, index);
     }
   }
