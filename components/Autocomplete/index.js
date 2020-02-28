@@ -26,6 +26,7 @@ class Autocomplete extends Component {
     this.handleBlur = this.handleBlur.bind(this);
     this.promisifySetState = this.promisifySetState.bind(this);
     this.clearInput = this.clearInput.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
   handleInputChange(text) {
@@ -47,6 +48,12 @@ class Autocomplete extends Component {
       );
     } else {
       this.setState({loading: false});
+    }
+  }
+
+  handleKeyPress(nativeEvent) {
+    if (nativeEvent.key === 'Backspace') {
+      this.dropdown.current.close();
     }
   }
 
@@ -203,7 +210,8 @@ class Autocomplete extends Component {
             value={inputValue}
             autoCorrect={autoCorrect}
             keyboardType={keyboardType}
-            onChangeText={text => this.handleInputChange(text)}
+            onChangeText={(text) => this.handleInputChange(text)}
+            onKeyPress={({ nativeEvent }) => this.handleKeyPress(nativeEvent)}
             onFocus={event => {
               if (scrollToInput) {
                 scrollToInput(findNodeHandle(event.target));
