@@ -4,7 +4,7 @@ import {responsiveFontSize} from "../utils/common";
 
 export const theme = {
   primary: colors.primary,
-  backgroundPrimary: colors.white,
+  backgroundPrimary: colors.transparent,
   transparent: colors.transparent,
   textSubtitle: colors.darkConcrete,
   listItem: colors.muddyGray,

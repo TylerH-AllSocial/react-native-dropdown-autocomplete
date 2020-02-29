@@ -54,7 +54,7 @@ class Autocomplete extends Component {
   handleKeyPress(nativeEvent) {
     const { items } = this.state;
     const { inputValue } = this.props;
-    if (!items.length) return;
+    if (!items || !items.length) return;
     if (nativeEvent.key === 'Backspace') {
       if (inputValue.length === 1 && inputValue.includes('@')) {
         this.dropdown.current.close();
