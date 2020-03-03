@@ -56,7 +56,7 @@ class Autocomplete extends Component {
     const { inputValue } = this.props;
     if (!items || !items.length) return;
     if (nativeEvent.key === 'Backspace') {
-      if (inputValue.length === 1 && inputValue.includes('@')) {
+      if (inputValue.length === 1 && inputValue.includes('@') && this.dropdown.current) {
         this.dropdown.current.close();
       }
     }
@@ -76,11 +76,11 @@ class Autocomplete extends Component {
 
     if (typeof customInputParser === 'function') {
         inputValue = customInputParser(inputValue)
-        if (!inputValue) {
+        if (!inputValue && this.dropdown.current) {
           this.dropdown.current.close();
           return;
         }
-        if (inputValue.length === 1 && inputValue.includes('@')) {
+        if (inputValue.length === 1 && inputValue.includes('@') && this.dropdown.current) {
           this.dropdown.current.close();
           return;
         }
