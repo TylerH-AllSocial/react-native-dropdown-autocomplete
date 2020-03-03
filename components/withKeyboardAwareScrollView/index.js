@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.backgroundPrimary,
-    paddingBottom: isX ? 30 : 0,
+    paddingBottom: 0,
   },
 });
 
